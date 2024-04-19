@@ -23,7 +23,7 @@ def main():
         # st.subheader('Edit/Add Stock')
         selected_user = st.selectbox('Select User', options=['YM', 'SW'])
         selected_stock = st.text_input('Select Stock to Edit / Add', key='ym1').upper()
-        quantity = st.number_input('Enter Your Amount ($)', min_value=100, key='ym2')
+        quantity = st.number_input('Enter Your Amount ($)', min_value=0, key='ym2')
         # average_price = st.number_input('Enter Average Price ($)', min_value=1, key='ym3')
 
         # 수정/추가 버튼
