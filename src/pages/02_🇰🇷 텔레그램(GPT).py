@@ -35,7 +35,7 @@ st.header('telegram')
 st.table(df)
 
 st.header("GPT Summary")
-st.info("한국어 미지원")
+st.info("[Info] 한국어 미지원")
 if st.button("요약하기"):
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
     llm = OpenAI(api_token=OPENAI_API_KEY)

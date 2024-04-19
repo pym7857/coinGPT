@@ -12,6 +12,11 @@ st.set_page_config(
 
 col1, col2 = st.columns(2)
 
+@st.cache_data
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
+
 def main():
     with st.sidebar:
         # 종목 수정/추가를 위한 입력 필드
@@ -37,6 +42,16 @@ def main():
         # 종목별 금액을 사용하여 원 그래프 그리기
         draw_pie_chart(portfolio)
 
+        # 포트폴리오 다운로드
+        csv = convert_df(portfolio)
+        st.download_button(
+            key="ym",
+            label="Download data as CSV",
+            data=csv,
+            file_name='portfolio_ym.csv',
+            mime='text/csv',
+        )
+
     with col2:
         st.title('SW')
         
@@ -49,6 +64,16 @@ def main():
         
         # 종목별 금액을 사용하여 원 그래프 그리기
         draw_pie_chart(portfolio)
+
+        # 포트폴리오 다운로드
+        csv = convert_df(portfolio)
+        st.download_button(
+            key="sw",
+            label="Download data as CSV",
+            data=csv,
+            file_name='portfolio_sw.csv',
+            mime='text/csv',
+        )
 
 def load_portfolio(FILE_NAME):
     """
